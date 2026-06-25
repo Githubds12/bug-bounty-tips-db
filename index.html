@@ -68,7 +68,13 @@
             border-color: rgba(59, 130, 246, 0.4);
             transform: translateY(-1px);
         }
+        .category-nav a.active {
+            background-color: #3b82f6;
+            color: #ffffff;
+            border-color: #3b82f6;
+        }
         .category-section {
+            display: none;
             margin-bottom: 4rem;
         }
         .category-title {
@@ -4707,6 +4713,29 @@ Privacy Protection Tools Cheat Sheet
         }
 
         document.addEventListener('DOMContentLoaded', () => {
+            // Tab / Category Routing logic
+            function showCategory(hash) {
+                if (!hash) {
+                    const firstNav = document.querySelector('.category-nav a');
+                    if (firstNav) hash = firstNav.getAttribute('href');
+                }
+                document.querySelectorAll('.category-section').forEach(sec => sec.style.display = 'none');
+                document.querySelectorAll('.category-nav a').forEach(nav => nav.classList.remove('active'));
+                
+                if (hash) {
+                    // Try to handle special characters in ID selectors
+                    try {
+                        const targetSec = document.getElementById(hash.substring(1));
+                        const targetNav = document.querySelector(`.category-nav a[href="${hash}"]`);
+                        if (targetSec) targetSec.style.display = 'block';
+                        if (targetNav) targetNav.classList.add('active');
+                    } catch(e) {}
+                }
+            }
+
+            window.addEventListener('hashchange', () => showCategory(window.location.hash));
+            showCategory(window.location.hash);
+
             // Load priorities
             document.querySelectorAll('.priority-controls').forEach(controls => {
                 const tipId = controls.getAttribute('data-tip-id');

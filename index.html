@@ -44,29 +44,49 @@
             max-width: 1200px;
             margin: 0 auto;
             padding: 3rem 2rem;
+            display: flex;
+            gap: 2rem;
+            align-items: flex-start;
+        }
+        @media (max-width: 768px) {
+            .container { flex-direction: column; }
+            .sidebar { position: static !important; width: 100%; flex: none !important; }
+        }
+        .sidebar {
+            flex: 0 0 280px;
+            position: sticky;
+            top: 2rem;
+        }
+        .main-content {
+            flex: 1;
+            min-width: 0;
         }
         .category-nav {
             display: flex;
-            flex-wrap: wrap;
-            gap: 1rem;
-            margin-bottom: 3rem;
-            justify-content: center;
+            flex-direction: column;
+            gap: 0.5rem;
+            background: #1e293b;
+            padding: 1.25rem;
+            border-radius: 0.75rem;
+            border: 1px solid var(--border-color);
         }
         .category-nav a {
-            background-color: rgba(59, 130, 246, 0.1);
-            color: #60a5fa;
-            border: 1px solid rgba(59, 130, 246, 0.2);
+            background-color: transparent;
+            color: #94a3b8;
+            border: 1px solid transparent;
             text-decoration: none;
-            padding: 0.5rem 1.25rem;
-            border-radius: 9999px;
-            font-size: 0.875rem;
+            padding: 0.6rem 1rem;
+            border-radius: 0.5rem;
+            font-size: 0.9rem;
             font-weight: 500;
             transition: all 0.2s ease;
+            display: flex;
+            justify-content: space-between;
         }
         .category-nav a:hover {
-            background-color: rgba(59, 130, 246, 0.2);
-            border-color: rgba(59, 130, 246, 0.4);
-            transform: translateY(-1px);
+            background-color: rgba(59, 130, 246, 0.1);
+            color: #60a5fa;
+            transform: translateX(4px);
         }
         .category-nav a.active {
             background-color: #3b82f6;
@@ -159,29 +179,32 @@
         <p class="subtitle">A curated collection of community tips categorized by vulnerability type. Extracted and formatted for easy reading.</p>
     </header>
     <div class="container">
-        <div class="category-nav">
-            <a href="#API-&-GraphQL">API & GraphQL (19)</a>
-            <a href="#Authentication-&-Sessions">Authentication & Sessions (15)</a>
-            <a href="#Business-Logic-Flaws">Business Logic Flaws (1)</a>
-            <a href="#CORS-Misconfiguration">CORS Misconfiguration (1)</a>
-            <a href="#CSRF">CSRF (1)</a>
-            <a href="#Cloud-&-Infrastructure">Cloud & Infrastructure (6)</a>
-            <a href="#IDOR-/-Access-Control">IDOR / Access Control (4)</a>
-            <a href="#Information-Disclosure">Information Disclosure (5)</a>
-            <a href="#LFI-&-Path-Traversal">LFI & Path Traversal (1)</a>
-            <a href="#Mobile-Hacking">Mobile Hacking (13)</a>
-            <a href="#Open-Redirect">Open Redirect (2)</a>
-            <a href="#Other-/-General">Other / General (211)</a>
-            <a href="#Prototype-Pollution">Prototype Pollution (2)</a>
-            <a href="#RCE-&-Template-Injection">RCE & Template Injection (29)</a>
-            <a href="#Recon-&-Enumeration">Recon & Enumeration (34)</a>
-            <a href="#SQL-Injection">SQL Injection (21)</a>
-            <a href="#SSRF">SSRF (4)</a>
-            <a href="#Subdomain-Takeover">Subdomain Takeover (2)</a>
-            <a href="#WAF-&-Bypasses">WAF & Bypasses (7)</a>
-            <a href="#Web-Cache-Poisoning">Web Cache Poisoning (1)</a>
-            <a href="#XSS-(Cross-Site-Scripting)">XSS (Cross-Site Scripting) (21)</a>
+        <div class="sidebar">
+            <div class="category-nav">
+                <a href="#API-&-GraphQL">API & GraphQL <span>19</span></a>
+                <a href="#Authentication-&-Sessions">Authentication & Sessions <span>15</span></a>
+                <a href="#Business-Logic-Flaws">Business Logic Flaws <span>1</span></a>
+                <a href="#CORS-Misconfiguration">CORS Misconfiguration <span>1</span></a>
+                <a href="#CSRF">CSRF <span>1</span></a>
+                <a href="#Cloud-&-Infrastructure">Cloud & Infrastructure <span>6</span></a>
+                <a href="#IDOR-/-Access-Control">IDOR / Access Control <span>4</span></a>
+                <a href="#Information-Disclosure">Information Disclosure <span>5</span></a>
+                <a href="#LFI-&-Path-Traversal">LFI & Path Traversal <span>1</span></a>
+                <a href="#Mobile-Hacking">Mobile Hacking <span>13</span></a>
+                <a href="#Open-Redirect">Open Redirect <span>2</span></a>
+                <a href="#Other-/-General">Other / General <span>211</span></a>
+                <a href="#Prototype-Pollution">Prototype Pollution <span>2</span></a>
+                <a href="#RCE-&-Template-Injection">RCE & Template Injection <span>29</span></a>
+                <a href="#Recon-&-Enumeration">Recon & Enumeration <span>34</span></a>
+                <a href="#SQL-Injection">SQL Injection <span>21</span></a>
+                <a href="#SSRF">SSRF <span>4</span></a>
+                <a href="#Subdomain-Takeover">Subdomain Takeover <span>2</span></a>
+                <a href="#WAF-&-Bypasses">WAF & Bypasses <span>7</span></a>
+                <a href="#Web-Cache-Poisoning">Web Cache Poisoning <span>1</span></a>
+                <a href="#XSS-(Cross-Site-Scripting)">XSS (Cross-Site Scripting) <span>21</span></a>
+            </div>
         </div>
+        <div class="main-content">
         <div class="category-section" id="API-&-GraphQL">
             <h2 class="category-title">API & GraphQL <span class="category-count">19 tips</span></h2>
             <ul class="tips-list">
@@ -4691,6 +4714,7 @@ Privacy Protection Tools Cheat Sheet
                     </div>
                 </li>
             </ul>
+        </div>
         </div>
     </div>
     <script>
